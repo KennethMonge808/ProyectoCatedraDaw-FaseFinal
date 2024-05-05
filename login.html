@@ -2,8 +2,10 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
     <title>Formulario de inicio de sesión</title>
     <link rel="stylesheet" href="css/registro.css">
+
 </head>
 
 <body>
@@ -21,7 +23,7 @@
 
     </form>
     <center>
-        <p>¿No tienes una cuenta? <a href="/registro.html">Regístrate aquí</a>.</p>
+        <p>¿No tienes una cuenta? <a href="/ProyectoCatedraDaw-FaseFinal/registro.html">Regístrate aquí</a>.</p>
     </center>
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js';
@@ -44,7 +46,6 @@
 
         const login = document.getElementById('login');
         const cerrar = document.getElementById('cerrar');
-        let loggedIn = false; // Variable de estado para verificar si el usuario ha iniciado sesión correctamente
 
         login.addEventListener('click', (e) => {
             const email = document.getElementById('emaillog').value;
@@ -54,7 +55,6 @@
                 .then(cred => {
                     alert("Usuario Logueado");
                     console.log(cred.user);
-                    loggedIn = true; // El usuario ha iniciado sesión correctamente
                 })
                 .catch(error => {
                     const errorCode = error.code;
@@ -81,13 +81,19 @@
         });
 
         onAuthStateChanged(auth, user => {
-            if (user && loggedIn) { // Verificar si el usuario ha iniciado sesión correctamente después de hacer clic en el botón "Ingresar"
+            if (user) { // Verificar si hay un usuario autenticado
                 console.log("Usuario Activo");
                 const emailVerified = user.emailVerified;
                 if (emailVerified) {
-                    window.location.href = "https://www.google.com/";
+                    window.location.href = "index.html"; // Redirigir al usuario a la página de medicamentos.html
                 } else {
-                    signOut(auth);
+                    console.log("Correo no verificado");
+                    // Sign out al usuario si el correo no ha sido verificado
+                    signOut(auth).then(() => {
+                        alert("Verifique su correo electrónico para iniciar sesión.");
+                    }).catch((error) => {
+                        console.error("Error al cerrar sesión:", error);
+                    });
                 }
             } else {
                 console.log("Usuario Inactivo");
