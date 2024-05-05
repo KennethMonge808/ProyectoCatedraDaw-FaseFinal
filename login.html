@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Formulario de inicio de sesión</title>
+    <link rel="stylesheet" href="css/registro.css">
+</head>
+
+<body>
+    <h2>Inicio de sesión</h2>
+    <form>
+        <label for="username">Correo:</label>
+        <input type="text" id="emaillog" name="username" required>
+        <br>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="passwordlog" name="password" required>
+        <br>
+        
+        <button type="button" id="login" class="btn">Ingresar</button>
+        <button type="button" id="cerrar" class="btn">Cerrar Sesión</button>
+
+    </form>
+    <center>
+        <p>¿No tienes una cuenta? <a href="/registro.html">Regístrate aquí</a>.</p>
+    </center>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js';
+        import {
+            signInWithEmailAndPassword, getAuth, signOut, onAuthStateChanged
+        } from 'https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCRsL8YDCOE6zwoaEYRZL-MKVK7zmhMS84",
+            authDomain: "fir-logindaw.firebaseapp.com",
+            projectId: "fir-logindaw",
+            storageBucket: "fir-logindaw.appspot.com",
+            messagingSenderId: "868596799337",
+            appId: "1:868596799337:web:bcebd12cfaca0ecf4b0ff8"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const login = document.getElementById('login');
+        const cerrar = document.getElementById('cerrar');
+        let loggedIn = false; // Variable de estado para verificar si el usuario ha iniciado sesión correctamente
+
+        login.addEventListener('click', (e) => {
+            const email = document.getElementById('emaillog').value;
+            const password = document.getElementById('passwordlog').value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then(cred => {
+                    alert("Usuario Logueado");
+                    console.log(cred.user);
+                    loggedIn = true; // El usuario ha iniciado sesión correctamente
+                })
+                .catch(error => {
+                    const errorCode = error.code;
+
+                    if (errorCode === 'auth/invalid-email')
+                        alert('El correo no es válido');
+                    else if (errorCode === 'auth/user-disabled')
+                        alert('El usuario ha sido deshabilitado');
+                    else if (errorCode === 'auth/user-not-found')
+                        alert('El usuario no existe');
+                    else if (errorCode === 'auth/wrong-password')
+                        alert('Contraseña incorrecta');
+                });
+        });
+
+        cerrar.addEventListener('click', (e) => {
+            signOut(auth)
+                .then(() => {
+                    alert('Sesión cerrada correctamente');
+                })
+                .catch((error) => {
+                    alert('Error al cerrar sesión');
+                });
+        });
+
+        onAuthStateChanged(auth, user => {
+            if (user && loggedIn) { // Verificar si el usuario ha iniciado sesión correctamente después de hacer clic en el botón "Ingresar"
+                console.log("Usuario Activo");
+                const emailVerified = user.emailVerified;
+                if (emailVerified) {
+                    window.location.href = "https://www.google.com/";
+                } else {
+                    signOut(auth);
+                }
+            } else {
+                console.log("Usuario Inactivo");
+            }
+        });
+    </script>
+</body>
+
+</html>
