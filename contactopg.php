@@ -4,26 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Contacto</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="css/contacto.css">
     <link rel="stylesheet" href="css/style.css">
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <header>
-    <nav>
-        <div class="logo-container">
-            <div class="logo">
-                <img src="img/imagen.png" alt="Logo">
-            </div>
+        <div class="logo">
+            <img src="img/LOGO-SINTWIN-PNG.png" alt="">
         </div>
-        <ul class="right-menu">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#informacion">/  Información</a></li>
-            <li><a href="#contacto">/ Contacto</a></li>
-            <li><a href="#historial">/ Historial</a></li>
-            <li><a href="#creadores">/ Creadores</a></li>
-        </ul>
-    </nav>
-</header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Medicamentos</a></li>
+                <li><a href="contactopg.php">Contacto</a></li>
+                <li><a href="integrantes.html">Creadores</a></li>
+                <li><a href="historial.html">Historial</a></li>
+            </ul>
+        </nav>
+    </header> 
 <body>
 
 <div class="contenedor1">
@@ -64,6 +63,8 @@
     </div>   
     
         <script src="js/contacto.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>  
+
 
     <?php
         include("api/contacto.php")
