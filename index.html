@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Medicamentos</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/LOGO-SINTWIN-PNG.png" alt="">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Bienvenida</a></li>
+                <li><a href="medicamentos.html">Medicamentos</a></li>
+                <li><a href="Contactanos.html">Contacto</a></li>
+                <li><a href="integrantes.html">Creadores</a></li>
+                <li><a href="historial.html">Historial</a></li>
+            </ul>
+        </nav>
+    </header> 
+    <main class="container">
+        <h3 class="center-align">Administrar Medicamentos</h3>
+        <div class="row">
+            <div class="input-field center-align col s12 m4">
+                <a onclick="openCreate()" class="btn-floating waves-effect indigo tooltipped" data-tooltip="Crear">
+                    <i class="material-icons">add</i>
+                </a>
+            </div>
+        </div>
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th>NOMBRE</th>
+                    <th>DOSIS</th>
+                    <th>HORARIO</th>
+                    <th>DURACIÓN (DÍAS)</th>
+                    <th>FECHA INICIO</th>
+                    <th>FECHA FIN</th>
+                    <th class="actions-column">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-rows"></tbody>
+        </table>
+        <div id="save-modal" class="modal">
+            <div class="row right">
+                <a class="black-text tooltipped modal-close" data-tooltip="Cerrar">
+                    <i class="small material-icons">close</i>
+                </a>
+            </div>
+            <div class="modal-content">
+                <h4 id="modal-title" class="center-align"></h4>
+                <form class="row" method="post" id="save-form" enctype="multipart/form-data">
+                    <input class="hide" type="number" id="id" name="id">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">note_add</i>
+                        <input id="nombre" type="text" name="nombre" class="validate" required>
+                        <label for="nombre">Nombre</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">description</i>
+                        <input id="dosis" type="text" name="dosis" class="validate" required>
+                        <label for="dosis">Dosis</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">access_time</i>
+                        <input id="horario" type="text" name="horario" class="validate" required>
+                        <label for="horario">Horario</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">schedule</i>
+                        <input id="duracion" type="number" name="duracion" class="validate" required>
+                        <label for="duracion">Duración (Días)</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">date_range</i>
+                        <input id="fecha_inicio" type="date" name="fecha_inicio" class="validate" required>
+                        <label for="fecha_inicio">Fecha Inicio</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">date_range</i>
+                        <input id="fecha_fin" type="date" name="fecha_fin" class="validate" required>
+                        <label for="fecha_fin">Fecha Fin</label>
+                    </div>
+                    <div class="col s12 center-align">
+                        <button id="reset-btn" type="button" class="btn-floating waves-effect grey tooltipped" data-tooltip="Reiniciar">
+                            <i class="material-icons">autorenew</i>
+                        </button>
+                        <button type="submit" class="btn-floating waves-effect blue tooltipped" data-tooltip="Guardar">
+                            <i class="material-icons">save</i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            M.AutoInit();
+        });
+    </script>
+</body>
+</html>

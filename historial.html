@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Historial de Medicamentos</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/LOGO-SINTWIN-PNG.png" alt="">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Bienvenida</a></li>
+                <li><a href="medicamentos.html">Medicamentos</a></li>
+                <li><a href="Contactanos.html">Contacto</a></li>
+                <li><a href="integrantes.html">Creadores</a></li>
+                <li class="active"><a href="historial.html">Historial</a></li> <!-- Página activa -->
+            </ul>
+        </nav>
+    </header> 
+    <main class="container">
+        <h3 class="center-align">Historial de Medicamentos</h3>
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th>NOMBRE</th>
+                    <th>DOSIS</th>
+                    <th>FECHA INICIO</th>
+                    <th>FECHA FIN</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-rows">
+                <!-- Aquí se agregarán las filas con datos del historial de medicamentos -->
+            </tbody>
+        </table>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/historial.js"></script>
+</body>
+</html>
